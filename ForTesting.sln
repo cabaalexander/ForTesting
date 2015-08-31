@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.22823.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForTesting", "ForTesting\ForTesting.csproj", "{C2199650-7049-42C1-80BE-D62EE464AB54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoapAPIClient", "SoapAPIClient\SoapAPIClient.csproj", "{44FD856B-0ED3-4F74-ADE9-471F54B65D12}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C2199650-7049-42C1-80BE-D62EE464AB54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2199650-7049-42C1-80BE-D62EE464AB54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2199650-7049-42C1-80BE-D62EE464AB54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2199650-7049-42C1-80BE-D62EE464AB54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44FD856B-0ED3-4F74-ADE9-471F54B65D12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44FD856B-0ED3-4F74-ADE9-471F54B65D12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44FD856B-0ED3-4F74-ADE9-471F54B65D12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44FD856B-0ED3-4F74-ADE9-471F54B65D12}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
