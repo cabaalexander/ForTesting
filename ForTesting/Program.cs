@@ -255,11 +255,11 @@ namespace ForTesting
 
             #region Email(ing)
 //            var source = GetValidSource();
-//            var password = GetPassword();
+//            var password = GetValidPassword();
 //            var destination = GetValidDestination();
 //                if (destination == "exit") return;
 //            const string subject = "Important :: Subject";
-//            var body = string.Format("Hello, {0}<br />This is someting.<br /><br />Bye.", destination);
+//            var body = string.Format("Hello, {0}<br />This is someting.<br /><br />Bye.", destination.Substring(0, destination.IndexOf("@")));
 //
 //            try
 //            {
@@ -355,12 +355,30 @@ namespace ForTesting
             return source;
         }
 
-        public static string GetPassword()
+        public static string GetValidPassword()
         {
+            var password = string.Empty;
+            ConsoleKeyInfo keyInfo;
             Console.Write("Password: ");
-            var result = Console.ReadLine();
+
+            do
+            {
+                keyInfo = Console.ReadKey(true);
+
+                if (keyInfo.Key != ConsoleKey.Enter && keyInfo.Key != ConsoleKey.Backspace)
+                {
+                    password += keyInfo.KeyChar;
+                    Console.Write("*");
+                }
+                else if (keyInfo.Key == ConsoleKey.Backspace && password.Length > 0)
+                {
+                    password = password.Substring(0, password.Length -1);
+                    Console.Write("\b \b");
+                }
+            } while (keyInfo.Key != ConsoleKey.Enter);
+
             Console.Clear();
-            return result;
+            return password;
         }
         #endregion
 
