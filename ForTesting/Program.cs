@@ -2,12 +2,15 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.IdentityModel.Tokens;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Net.Security;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Security.Claims;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
@@ -80,6 +83,15 @@ namespace ForTesting
             //Console.Write(myDict.Values);
             #endregion
 
+            #region Dictionary to List
+//            var mDict = new Dictionary<string, string>();
+//            mDict["uno"] = "Dict Uno";
+////            mDict["dos"] = "Dict Dos";
+//
+//            var numOfParams = mDict.Count > 1 && mDict.Count < 3 ? "{0}\n{1}" : "{0}";
+//            Console.WriteLine(numOfParams, DictValuesToList(mDict));
+            #endregion
+
             #region Regular Expression - Validation
             //Regex email_RE = new Regex(@"^[a-zA-Z]+@[a-zA-Z]+\.[a-zA-Z]+$");
             //Regex date_RE = new Regex(@"^(0?[1-9]|1[0-2])(/|-)(19|2[0-1])\d{2}$");
@@ -131,21 +143,36 @@ namespace ForTesting
             #endregion
 
             #region Random
-            //Console.Clear();
-            //var body = String.Format("Contact information: \n\nName:  ".Replace("\n", "<br />"));
-            //Console.WriteLine(body);
+//            Console.Clear();
+//            var body = String.Format("Contact information: \n\nName:  ".Replace("\n", "<br />"));
+//            Console.WriteLine(body);
+
+//            var count = 3;
+//
+//            var numbersOfParams = string.Empty;
+//            for (int i = 0; i < count; i++)
+//            {
+//                numbersOfParams += numbersOfParams.Length > 0 ?
+//                    "\n{/holder}".Replace("/holder", i.ToString()) :
+//                    "{/holder}".Replace("/holder", i.ToString());
+//            }
+//
+//            Console.WriteLine(numbersOfParams);
+
+//            string texto = null;
+//            Console.WriteLine(texto ?? "Otra Cosa");
             #endregion
 
             #region String Split
-            //string needToSplit = "n-alexander-de-la-cruz-caba#10762";
-            //string[] splitted = needToSplit.Split('#');
-
-            //foreach (string item in splitted)
-            //{
-            //    Console.WriteLine(item);
-            //}
-
-            //Console.Write("Just the second Element(the ID): {0}", splitted[1]);
+//            string needToSplit = "n-alexander-de-la-cruz-caba#10762";
+//            string[] splitted = needToSplit.Split('#');
+//
+//            foreach (string item in splitted)
+//            {
+//                Console.WriteLine(item);
+//            }
+//
+//            Console.Write("Just the second Element(the ID): {0}", splitted[1]);
             #endregion
 
             #region Random
@@ -293,8 +320,12 @@ namespace ForTesting
 //            }
             #endregion
 
-            #region NamedValues
-            //no implementation
+            #region HTTPGET
+//            using (var client = new WebClient())
+//            {
+//                var responseString = client.DownloadString("https://www.miucateci.edu.do/ics/");
+//                Console.WriteLine(responseString);
+//            }
             #endregion
 
             #region ... Readkey ...
@@ -303,7 +334,23 @@ namespace ForTesting
             #endregion
         }
 
-        #region Auxiliar Methods - Email(ing)
+        #region Auxiliar Methods
+
+        #region Dictionary to List
+        static string[] DictValuesToList(Dictionary<string, string> dictionary)
+        {
+            var result = new string[dictionary.Count];
+
+            for (int i = 0; i < dictionary.Count; i++)
+            {
+                result[i] = dictionary.Values.ToList()[i];
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region Email(ing)
         private static string ValidSmtpService(string service)
         {
             var smtpServers = new Dictionary<string, string>()
@@ -382,15 +429,27 @@ namespace ForTesting
         }
         #endregion
 
-        #region Auxiliar Methods - Generics
+        #region Generics
         public static T MyGenericMethod<T>(T value)
         {
             return value;
         }
         #endregion
+
+        #region Encrypt
+        public static string Encrypt(string input)
+        {
+            var bytes = Encoding.UTF8.GetBytes(input);
+            return Convert.ToBase64String(bytes);
+        }
+        #endregion
+
+        #endregion
     }
 
-    #region Auxiliar Clases - Deserializing/Cast(ing)
+    #region Auxiliar Clases
+
+    #region Deserializing/Cast(ing)
     public class Parent
     {
         public virtual string FirstName { get; set; }
@@ -409,7 +468,7 @@ namespace ForTesting
     }
     #endregion
 
-    #region Auxiliar Clases - Generics
+    #region Generics
     public class MyIntList<T>
     {
         private T[] myInts;
@@ -472,7 +531,7 @@ namespace ForTesting
     }
     #endregion
 
-    #region Auxiliar Clases - Reflection
+    #region Reflection
     [MyClass]
     public class Sample
     {
@@ -493,5 +552,7 @@ namespace ForTesting
 
     [AttributeUsage(AttributeTargets.Method)]
     public class MyMethodAttribute : Attribute { }
+    #endregion
+
     #endregion
 }
